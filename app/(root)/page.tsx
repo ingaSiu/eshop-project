@@ -12,8 +12,6 @@ const Home = () => {
       </section>
 
       <section className="section_container">
-        <h1 className="font-bold text-4xl text-cyan-950 text-center"> Shop for your favorite cat merch with ease</h1>
-
         <div className="mt-7 card_grid">
           {sampleProducts.length > 0 ? (
             sampleProducts.map((product) => (
