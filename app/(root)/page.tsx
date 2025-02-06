@@ -3,25 +3,34 @@ import { sampleProducts } from '@/constants';
 
 const Home = () => {
   return (
-    <section className="section_container">
-      <h1 className="font-bold text-4xl text-cyan-950 text-center"> Shop for your favorite cat merch with ease</h1>
+    <>
+      <section className="pink_container">
+        <h1 className="heading">
+          Shop for cat merch, <br /> With ease and comfort 😻
+        </h1>
+        <p className="sub-heading !max-w-3xl">Find the best deals from biggest cat merch shop! 🐱‍💻</p>
+      </section>
 
-      <div className="mt-7 card_grid">
-        {sampleProducts.length > 0 ? (
-          sampleProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              imgUrl={product.image}
-              name={product.name}
-              price={product.price}
-              description={product.description}
-            />
-          ))
-        ) : (
-          <p className="no-results">No products found 🐱‍👤</p>
-        )}
-      </div>
-    </section>
+      <section className="section_container">
+        <h1 className="font-bold text-4xl text-cyan-950 text-center"> Shop for your favorite cat merch with ease</h1>
+
+        <div className="mt-7 card_grid">
+          {sampleProducts.length > 0 ? (
+            sampleProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                imgUrl={product.image}
+                name={product.name}
+                price={product.price}
+                description={product.description}
+              />
+            ))
+          ) : (
+            <p className="no-results">No products found 🐱‍👤</p>
+          )}
+        </div>
+      </section>
+    </>
   );
 };
 
