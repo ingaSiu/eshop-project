@@ -16,6 +16,7 @@ const Home = () => {
           {sampleProducts.length > 0 ? (
             sampleProducts.map((product) => (
               <ProductCard
+                id={product.id}
                 key={product.id}
                 imgUrl={product.image}
                 name={product.name}
