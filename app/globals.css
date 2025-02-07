@@ -81,23 +81,23 @@ body {
     @apply font-medium text-[20px] text-white max-w-2xl text-center break-words;
   }
 
-  .startup-card {
+  .product-card {
     @apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-200 hover:border-primary transition-all duration-500 hover:shadow-300 hover:bg-primary-100;
   }
 
-  .startup-card_date {
+  .product-card_date {
     @apply font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-full group-hover:bg-white-100;
   }
 
-  .startup-card_desc {
-    @apply font-normal text-[16px] line-clamp-2 my-3 text-black-100 break-all;
+  .product-card_desc {
+    @apply font-normal text-[16px] line-clamp-1 my-3 text-black-100 break-all;
   }
 
-  .startup-card_img {
+  .product-card_img {
     @apply w-full h-[164px] rounded-[10px] object-cover;
   }
 
-  .startup-card_btn {
+  .product-card_btn {
     @apply rounded-full bg-black-200 font-medium text-[16px] text-white px-5 py-3 !important;
   }
 
@@ -128,6 +128,10 @@ body {
     background-size: 5% 100%;
     background-position: center;
     background-repeat: repeat-x;
+  }
+
+  .counter-btn {
+    @apply bg-primary/80 hover:bg-primary-100;
   }
 }
 
