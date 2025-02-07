@@ -6,9 +6,10 @@ type Props = {
   name: string;
   price: number;
   description: string;
+  stock: number;
 };
 
-const ProductCard = ({ imgUrl, name, price, description }: Props) => {
+const ProductCard = ({ imgUrl, name, price, description, stock }: Props) => {
   return (
     <div className="startup-card">
       <div className="flex flex-col">
@@ -18,8 +19,18 @@ const ProductCard = ({ imgUrl, name, price, description }: Props) => {
           <Image src={imgUrl} alt={name} width={140} height={164} className="startup-card_img" />
         </div>
         <div className="flex-between gap-3 mt-5">
-          <p className="text-2xl ml-4 font-semibold">{price} $</p>
-          <Button className="startup-card_btn">Add to chart</Button>
+          <div className="flex items-center gap-2">
+            <p className="text-2xl ml-4 font-semibold">{price} $</p>
+            <p>
+              {stock <= 0 ? (
+                <span className="text-sm text-red-500"> • Out of Stock</span>
+              ) : (
+                <span className="text-sm text-green-500">• In Stock</span>
+              )}
+            </p>
+          </div>
+
+          <Button className="startup-card_btn">Add to cart</Button>
         </div>
       </div>
     </div>

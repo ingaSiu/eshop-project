@@ -21,6 +21,7 @@ const Home = () => {
                 name={product.name}
                 price={product.price}
                 description={product.description}
+                stock={product.stock}
               />
             ))
           ) : (
