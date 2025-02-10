@@ -1,3 +1,14 @@
+export const sortTypes = [
+  {
+    label: 'Price (Highest)',
+    value: 'price-desc',
+  },
+  {
+    label: 'Price (Lowest)',
+    value: 'price-asc',
+  },
+];
+
 export const sampleProducts = [
   {
     id: 1,
@@ -67,7 +78,7 @@ export const sampleProducts = [
     price: 22,
     image: 'https://placehold.co/200',
     rating: 4.7,
-    stock: 30,
+    stock: 0,
   },
   {
     id: 8,
