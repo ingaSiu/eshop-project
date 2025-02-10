@@ -39,7 +39,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
             </div>
           </div>
 
-          <Button className="w-full mt-6">Add to cart</Button>
+          <Button className="w-full mt-6 py-8 text-xl">Add to cart</Button>
         </div>
       </div>
 
