@@ -5,9 +5,7 @@ import { Minus, Plus } from 'lucide-react';
 import { Button } from './ui/button';
 import { useState } from 'react';
 
-// TODO: get stock to disable adding items if the current stock number is reached
-
-const CounterBtn = () => {
+const CounterBtn = ({ stock }: { stock: number }) => {
   const [count, setCount] = useState(0);
 
   const increment = () => {
@@ -26,7 +24,7 @@ const CounterBtn = () => {
         <Minus />
       </Button>
       <p className="font-semibold ">{count}</p>
-      <Button className="counter-btn" onClick={increment}>
+      <Button className="counter-btn" onClick={increment} disabled={count >= stock}>
         <Plus />
       </Button>
     </div>

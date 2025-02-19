@@ -38,7 +38,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
             <p className="text-3xl text-right mb-4">{productDetails.price} €</p>
 
             <div className="flex gap-4 items-center">
-              <CounterBtn />
+              <CounterBtn stock={productDetails.stock} />
               <p>Only {productDetails.stock} left in stock 🙀</p>
             </div>
           </div>
