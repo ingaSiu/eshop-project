@@ -1,10 +1,21 @@
-interface sampleProducts {
-  id: number;
-  name: string;
-  category: string;
+interface Products {
+  id: string;
+  title: string;
+  category:
+    | 'GAME'
+    | 'BOOKS'
+    | 'PET_SUPPLIES'
+    | 'TOYS'
+    | 'STATIONERY'
+    | 'CLOTHING'
+    | 'ELECTRONICS'
+    | 'HOME'
+    | 'OTHER'
+    | null;
   description: string;
   price: number;
-  image: string;
+  imageUrl: string;
   rating: number;
   stock: number;
+  createdAt: Date | null;
 }
