@@ -2,24 +2,15 @@ import { Button } from './ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 
-type Props = {
-  id: number;
-  imgUrl: string;
-  name: string;
-  price: number;
-  description: string;
-  stock: number;
-};
-
-const ProductCard = ({ id, imgUrl, name, price, description, stock }: Props) => {
+const ProductCard = ({ id, imageUrl, title, price, description, stock }: Products) => {
   return (
     <div className="product-card">
       <div className="flex flex-col">
         <Link href={`products/${id}`}>
-          <h3 className="text-26-semibold line-clamp-1">{name}</h3>
+          <h3 className="text-26-semibold line-clamp-1">{title}</h3>
           <div>
             <p className="product-card_desc">{description}</p>
-            <Image src={imgUrl} alt={name} width={140} height={164} className="product-card_img" />
+            <Image src={imageUrl} alt={title} width={140} height={164} className="product-card_img" />
           </div>
         </Link>
         <div className="flex-between gap-3 mt-5">
