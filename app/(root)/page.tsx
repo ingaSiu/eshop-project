@@ -1,7 +1,10 @@
-import ProductCard from '@/components/ProductCard';
-import { sampleProducts } from '@/constants';
+import ProductList from '@/components/ProductList';
+import { db } from '@/database';
+import { desc } from 'drizzle-orm';
+import { products } from '@/database/schema';
 
-const Home = () => {
+const Home = async () => {
+  const productsList = await db.select().from(products).orderBy(desc(products.createdAt));
   return (
     <>
       <section className="pink_container">
@@ -12,23 +15,7 @@ const Home = () => {
       </section>
 
       <section className="section_container">
-        <div className="mt-7 card_grid">
-          {sampleProducts.length > 0 ? (
-            sampleProducts.map((product) => (
-              <ProductCard
-                id={product.id}
-                key={product.id}
-                imgUrl={product.image}
-                name={product.name}
-                price={product.price}
-                description={product.description}
-                stock={product.stock}
-              />
-            ))
-          ) : (
-            <p className="no-results">No products found 🐱‍👤</p>
-          )}
-        </div>
+        <ProductList products={productsList} />
       </section>
     </>
   );
