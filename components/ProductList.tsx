@@ -10,7 +10,7 @@ const ProductList = ({ products }: Props) => {
       {products.length > 0 ? (
         products.map((product) => <ProductCard key={product.id} {...product} />)
       ) : (
-        <p className="no-results">No products found 🐱‍👤</p>
+        <p className="no-results">No products found 🙀</p>
       )}
     </div>
   );
