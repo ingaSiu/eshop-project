@@ -7,7 +7,7 @@ const Home = async () => {
   const productsList = await db.select().from(products).orderBy(desc(products.createdAt));
   return (
     <>
-      <section className="pink_container">
+      <section className="orange_container">
         <h1 className="heading">
           Shop for cat merch, <br /> With ease and comfort 😻
         </h1>
