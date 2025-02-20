@@ -70,8 +70,8 @@ body {
     @apply font-semibold text-[26px] text-black;
   }
 
-  .pink_container {
-    @apply w-full bg-primary min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6;
+  .orange_container {
+    @apply w-full bg-orange-400 min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6;
   }
 
   .heading {
@@ -113,16 +113,16 @@ body {
     @apply grid sm:grid-cols-2 gap-5;
   }
 
-  .no-result {
-    @apply text-black-100 text-sm font-normal;
+  .no-results {
+    @apply text-black-100 text-4xl font-normal;
   }
 
   .pattern {
     background-image: linear-gradient(
       to right,
       transparent 49.5%,
-      rgba(251, 232, 67, 0.2) 49.5%,
-      rgba(251, 232, 67, 0.6) 50.5%,
+      rgba(229, 20, 184, 0.2) 49.5%,
+      rgba(97, 12, 81, 0.6) 50.5%,
       transparent 50.5%
     );
     background-size: 5% 100%;
