@@ -1,23 +1,27 @@
-import { Button } from './ui/button';
+import AddToCartBtn from './AddToCartBtn';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const ProductCard = ({ id, imageUrl, title, price, description, stock }: Products) => {
+interface Props {
+  product: Product;
+}
+
+const ProductCard = ({ product }: Props) => {
   return (
     <div className="product-card">
       <div className="flex flex-col">
-        <Link href={`products/${id}`}>
-          <h3 className="text-26-semibold line-clamp-1">{title}</h3>
+        <Link href={`products/${product.id}`}>
+          <h3 className="font-semibold text-center text-26-semibold sm:text-xl md:line-clamp-1">{product.title}</h3>
           <div>
-            <p className="product-card_desc">{description}</p>
-            <Image src={imageUrl} alt={title} width={140} height={164} className="product-card_img" />
+            <p className="product-card_desc">{product.description}</p>
+            <Image src={product.imageUrl} alt={product.title} width={140} height={164} className="product-card_img" />
           </div>
         </Link>
-        <div className="flex-between gap-3 mt-5">
-          <div className="flex items-center gap-2">
-            <p className="text-2xl ml-4 font-semibold">{price} $</p>
+        <div className="flex flex-col   ">
+          <div className="flex items-center justify-center gap-4 mt-4 mb-4">
+            <p className="text-2xl ml-4 font-semibold">{product.price} €</p>
             <p>
-              {stock <= 0 ? (
+              {product.stock <= 0 ? (
                 <span className="text-sm text-red-500"> • Out of Stock</span>
               ) : (
                 <span className="text-sm text-green-500">• In Stock</span>
@@ -25,7 +29,7 @@ const ProductCard = ({ id, imageUrl, title, price, description, stock }: Product
             </p>
           </div>
 
-          <Button className="product-card_btn">Add to cart</Button>
+          <AddToCartBtn product={product} className="product-card_btn" />
         </div>
       </div>
     </div>

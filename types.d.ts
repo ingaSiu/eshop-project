@@ -1,4 +1,4 @@
-interface Products {
+interface Product {
   id: string;
   title: string;
   category:
