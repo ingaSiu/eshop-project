@@ -33,10 +33,10 @@ const Cart = () => {
 
         {cartItems.map((cartItem) => {
           return (
-            <SheetDescription key={cartItem.product.id} className="">
-              <div className="flex space-x-4 mb-4 text-white ">
+            <SheetDescription key={cartItem.product.id} className="mt-4">
+              <div className="flex justify-evenly space-x-4 mb-4 text-white ">
                 <Image
-                  className="object-cover rounded-md hidden md:block"
+                  className="object-cover rounded-md "
                   src={cartItem.product.imageUrl}
                   alt={cartItem.product.title}
                   width={60}
@@ -77,17 +77,28 @@ const Cart = () => {
 
         <SheetDescription>
           <div className="text-white">
-            <h1 className="text-2xl mb-2">Total:</h1>
-            <p className="font-semibold text-xl mb-4">
+            <p className="font-semibold text-xl mt-4 mb-4">
               <span className="text-gray-400 ">The total of your cart is:</span> €{countTotalPrice()}
             </p>
           </div>
         </SheetDescription>
 
         <SheetClose asChild>
-          <Button type="submit" className="w-full text-white font-semibold" asChild>
-            <Link href="/">CHECKOUT</Link>
-          </Button>
+          {cartItems.length === 0 ? (
+            <div className="w-full text-white font-semibold cursor-not-allowed text-center py-2 rounded-md">
+              CHECKOUT
+            </div>
+          ) : (
+            <Button
+              type="submit"
+              onClick={clearCart}
+              className="w-full text-white font-semibold"
+              disabled={cartItems.length === 0}
+              asChild
+            >
+              <Link href="/checkout">CHECKOUT</Link>
+            </Button>
+          )}
         </SheetClose>
       </SheetContent>
     </Sheet>
