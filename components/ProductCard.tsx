@@ -11,13 +11,13 @@ const ProductCard = ({ product }: Props) => {
     <div className="product-card">
       <div className="flex flex-col">
         <Link href={`products/${product.id}`}>
-          <h3 className="font-semibold text-center text-26-semibold sm:text-xl md:line-clamp-1">{product.title}</h3>
+          <h3 className="font-semibold text-center text-xl md:text-2xl md:line-clamp-1">{product.title}</h3>
           <div>
             <p className="product-card_desc">{product.description}</p>
             <Image src={product.imageUrl} alt={product.title} width={140} height={164} className="product-card_img" />
           </div>
         </Link>
-        <div className="flex flex-col   ">
+        <div className="flex flex-col xl:flex-row gap-4 items-center justify-between">
           <div className="flex items-center justify-center gap-4 mt-4 mb-4">
             <p className="text-2xl ml-4 font-semibold">{product.price} €</p>
             <p>
