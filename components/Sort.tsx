@@ -15,8 +15,16 @@ const Sort = () => {
 
   const currentSort = searchparams.get('sort') || '';
 
-  const handleSort = (value: string) => {
-    router.push(`${path}?sort=${value}`);
+  const handleSort = (value?: string) => {
+    const params = new URLSearchParams(searchparams.toString());
+
+    if (!value) {
+      params.delete('sort');
+    } else {
+      params.set('sort', value);
+    }
+
+    router.push(`${path}?${params.toString()}`);
   };
 
   return (
@@ -38,7 +46,7 @@ const Sort = () => {
         </RadioGroup>
         <SheetClose asChild>
           <div className="flex flex-col gap-4 mt-4 text-white font-semibold">
-            <Button onClick={() => handleSort('')}>CLEAR</Button>
+            <Button onClick={() => handleSort()}>CLEAR</Button>
             <Button onClick={() => handleSort(currentSort)}>APPLY</Button>
           </div>
         </SheetClose>
