@@ -2,13 +2,9 @@ import ProductList from '@/components/ProductList';
 import Sort from '@/components/Sort';
 import { getSortedProducts } from '@/lib/queries/getSortedProducts';
 
-interface HomeProps {
-  searchParams: { sort?: string };
-}
-
-const Home = async ({ searchParams }: HomeProps) => {
-  const sort = searchParams.sort || 'default';
-  const productsList = await getSortedProducts(sort);
+const Home = async ({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) => {
+  const { sort } = await searchParams;
+  const productsList = await getSortedProducts(sort || 'default');
   return (
     <>
       <section className="orange_container">
