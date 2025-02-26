@@ -2,23 +2,21 @@
 
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { Button } from './ui/button';
 import { Label } from '@/components/ui/label';
 import { sortTypes } from '@/constants';
-import { useState } from 'react';
 
 const Sort = () => {
-  const [value, setValue] = useState('');
-
   const path = usePathname();
   const router = useRouter();
+  const searchparams = useSearchParams();
 
-  const clearSort = () => setValue('');
+  const currentSort = searchparams.get('sort') || '';
+
   const handleSort = (value: string) => {
     router.push(`${path}?sort=${value}`);
-    setValue(value);
   };
 
   return (
@@ -30,7 +28,7 @@ const Sort = () => {
         <SheetHeader>
           <SheetTitle className="text-white mb-4">Sort Products:</SheetTitle>
         </SheetHeader>
-        <RadioGroup value={value} onValueChange={handleSort}>
+        <RadioGroup value={currentSort} onValueChange={handleSort}>
           {sortTypes.map((sortType) => (
             <div key={sortType.label} className="flex gap-4 items-center mb-2">
               <RadioGroupItem value={sortType.value} />
@@ -40,8 +38,8 @@ const Sort = () => {
         </RadioGroup>
         <SheetClose asChild>
           <div className="flex flex-col gap-4 mt-4 text-white font-semibold">
-            <Button onClick={clearSort}>CLEAR</Button>
-            <Button onClick={() => handleSort(value)}>APPLY</Button>
+            <Button onClick={() => handleSort('')}>CLEAR</Button>
+            <Button onClick={() => handleSort(currentSort)}>APPLY</Button>
           </div>
         </SheetClose>
       </SheetContent>
