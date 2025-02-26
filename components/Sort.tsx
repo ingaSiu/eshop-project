@@ -1,5 +1,6 @@
 'use client';
 
+import { ChevronDown, X } from 'lucide-react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
@@ -27,11 +28,28 @@ const Sort = () => {
     router.push(`${path}?${params.toString()}`);
   };
 
+  const selectedSortLabel = sortTypes.find((sortType) => sortType.value === currentSort)?.label;
+
   return (
     <Sheet>
-      <SheetTrigger className=" py-2 px-4 rounded-md font-semibold cursor-pointer hover:bg-primary">
-        Sort By{' '}
-      </SheetTrigger>
+      <div className="flex flex-col justify-center gap-2">
+        <SheetTrigger className="border border-black w-fit py-2 px-4 rounded-md flex items-center gap-2 font-semibold cursor-pointer hover:bg-primary">
+          Sort By <ChevronDown className="w-4 h-4" />
+        </SheetTrigger>
+        {currentSort && (
+          <Button
+            onClick={() => handleSort()}
+            variant="ghost"
+            className="w-fit border border-black rounded-xl hover:bg-slate-100"
+          >
+            {selectedSortLabel}{' '}
+            <span>
+              <X className="w-4 h-4" />
+            </span>
+          </Button>
+        )}
+      </div>
+
       <SheetContent>
         <SheetHeader>
           <SheetTitle className="text-white mb-4">Sort Products:</SheetTitle>
