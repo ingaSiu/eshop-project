@@ -1,10 +1,14 @@
 import ProductList from '@/components/ProductList';
-import { db } from '@/database';
-import { desc } from 'drizzle-orm';
-import { products } from '@/database/schema';
+import Sort from '@/components/Sort';
+import { getSortedProducts } from '@/lib/queries/getSortedProducts';
 
-const Home = async () => {
-  const productsList = await db.select().from(products).orderBy(desc(products.createdAt));
+interface HomeProps {
+  searchParams: { sort?: string };
+}
+
+const Home = async ({ searchParams }: HomeProps) => {
+  const sort = searchParams.sort || 'default';
+  const productsList = await getSortedProducts(sort);
   return (
     <>
       <section className="orange_container">
@@ -15,6 +19,7 @@ const Home = async () => {
       </section>
 
       <section className="section_container">
+        <Sort />
         <ProductList products={productsList} />
       </section>
     </>
