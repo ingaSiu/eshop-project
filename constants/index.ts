@@ -7,6 +7,14 @@ export const sortTypes = [
     label: 'Price (Lowest)',
     value: 'price-asc',
   },
+  {
+    label: 'Name (A-Z)',
+    value: 'name-asc',
+  },
+  {
+    label: 'Name (Z-A)',
+    value: 'name-desc',
+  },
 ];
 
 export const sampleProducts = [
