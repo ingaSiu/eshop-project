@@ -1,15 +1,46 @@
 'use client';
 
-import { ChevronDown, X } from 'lucide-react';
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { Button } from './ui/button';
 import { Checkbox } from './ui/checkbox';
+import { ChevronDown } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { filterTypes } from '@/constants';
+import { useState } from 'react';
 
 const Filter = () => {
-  const handleFilter = () => {};
+  const path = usePathname();
+  const router = useRouter();
+  const searchparams = useSearchParams();
+  const params = new URLSearchParams(searchparams.toString());
+
+  const initialCategories = params.getAll('category') || [];
+
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(initialCategories);
+
+  const handleSelect = (category: string) => {
+    setSelectedCategories((prev) =>
+      prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category],
+    );
+  };
+
+  const applyFilter = () => {
+    if (selectedCategories.length > 0) {
+      params.delete('category');
+      selectedCategories.forEach((category) => params.append('category', category));
+    } else {
+      params.delete('category');
+    }
+    router.push(`${path}?${params.toString()}`);
+  };
+
+  const clearFilter = () => {
+    setSelectedCategories([]);
+    params.delete('category');
+    router.push(path);
+  };
   return (
     <Sheet>
       <div className="flex flex-col justify-center gap-2">
@@ -26,7 +57,10 @@ const Filter = () => {
         <div>
           {filterTypes.map((filterType) => (
             <div key={filterType.label} className="flex gap-4 items-center mb-2">
-              <Checkbox value={filterType.value} />
+              <Checkbox
+                checked={selectedCategories.includes(filterType.value)}
+                onCheckedChange={() => handleSelect(filterType.value)}
+              />
               <Label className="text-white">{filterType.label}</Label>
             </div>
           ))}
@@ -34,8 +68,8 @@ const Filter = () => {
 
         <SheetClose asChild>
           <div className="flex flex-col gap-4 mt-4 text-white font-semibold">
-            <Button onClick={() => {}}>CLEAR</Button>
-            <Button onClick={() => {}}>APPLY</Button>
+            <Button onClick={clearFilter}>CLEAR</Button>
+            <Button onClick={applyFilter}>APPLY</Button>
           </div>
         </SheetClose>
       </SheetContent>
