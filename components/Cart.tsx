@@ -1,14 +1,6 @@
 'use client';
 
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
 import { Button } from './ui/button';
 import CounterBtn from './CounterBtn';
@@ -71,9 +63,11 @@ const Cart = () => {
 
         <Separator className="w-full h-0.5 bg-gray-200 mb-2" />
 
-        <Button className="bg-inherit w-fit text-white font-semibold" onClick={clearCart}>
-          Remove all Products
-        </Button>
+        {cartItems.length > 0 && (
+          <Button className="bg-inherit w-fit text-white font-semibold" onClick={clearCart}>
+            Remove all Products
+          </Button>
+        )}
 
         <div>
           <div className="text-white">
