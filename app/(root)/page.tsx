@@ -4,8 +4,11 @@ import Sort from '@/components/Sort';
 import { getSortedProducts } from '@/lib/queries/getSortedProducts';
 
 const Home = async ({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) => {
-  const { sort } = await searchParams;
-  const productsList = await getSortedProducts(sort || 'default');
+  const { sort, category } = await searchParams;
+
+  const categories = category ? (Array.isArray(category) ? category : [category]) : [];
+  const productsList = await getSortedProducts(sort || 'default', categories);
+
   return (
     <>
       <section className="orange_container">
