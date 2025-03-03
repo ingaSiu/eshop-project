@@ -33,7 +33,7 @@ const Cart = () => {
 
         {cartItems.map((cartItem) => {
           return (
-            <SheetDescription key={cartItem.product.id} className="mt-4">
+            <div key={cartItem.product.id} className="mt-4">
               <div className="flex justify-evenly space-x-4 mb-4 text-white ">
                 <Image
                   className="object-cover rounded-md "
@@ -65,7 +65,7 @@ const Cart = () => {
                   <CounterBtn product={cartItem.product} />
                 </div>
               </div>
-            </SheetDescription>
+            </div>
           );
         })}
 
@@ -75,13 +75,13 @@ const Cart = () => {
           Remove all Products
         </Button>
 
-        <SheetDescription>
+        <div>
           <div className="text-white">
             <p className="font-semibold text-xl mt-4 mb-4">
               <span className="text-gray-400 ">The total of your cart is:</span> €{countTotalPrice()}
             </p>
           </div>
-        </SheetDescription>
+        </div>
 
         <SheetClose asChild>
           {cartItems.length === 0 ? (
