@@ -45,7 +45,8 @@ const Filter = () => {
     <Sheet>
       <div className="flex flex-col justify-center gap-2">
         <SheetTrigger className="border border-black w-fit py-2 px-4 rounded-md flex items-center gap-2 font-semibold cursor-pointer hover:bg-primary">
-          Filter By <ChevronDown className="w-4 h-4" />
+          Filter By Categories
+          <ChevronDown className="w-4 h-4" />
         </SheetTrigger>
       </div>
 
