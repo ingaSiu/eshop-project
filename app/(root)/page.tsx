@@ -1,3 +1,4 @@
+import Filter from '@/components/Filter';
 import ProductList from '@/components/ProductList';
 import Sort from '@/components/Sort';
 import { getSortedProducts } from '@/lib/queries/getSortedProducts';
@@ -15,7 +16,11 @@ const Home = async ({ searchParams }: { searchParams: Promise<{ [key: string]: s
       </section>
 
       <section className="section_container">
-        <Sort />
+        <div className="flex gap-4">
+          <Sort />
+          <Filter />
+        </div>
+
         <ProductList products={productsList} />
       </section>
     </>
