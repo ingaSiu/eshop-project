@@ -7,6 +7,26 @@ export const sortTypes = [
     label: 'Price (Lowest)',
     value: 'price-asc',
   },
+  {
+    label: 'Name (A-Z)',
+    value: 'name-asc',
+  },
+  {
+    label: 'Name (Z-A)',
+    value: 'name-desc',
+  },
+];
+
+export const filterTypes = [
+  { label: 'Games', value: 'GAME' },
+  { label: 'Books', value: 'BOOKS' },
+  { label: 'Pet Supplies', value: 'PET_SUPPLIES' },
+  { label: 'Toys', value: 'TOYS' },
+  { label: 'Stationery', value: 'STATIONERY' },
+  { label: 'Clothing', value: 'CLOTHING' },
+  { label: 'Electronics', value: 'ELECTRONICS' },
+  { label: 'Home', value: 'HOME' },
+  { label: 'Other', value: 'OTHER' },
 ];
 
 export const sampleProducts = [

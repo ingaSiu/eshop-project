@@ -1,10 +1,14 @@
+import Filter from '@/components/Filter';
 import ProductList from '@/components/ProductList';
-import { db } from '@/database';
-import { desc } from 'drizzle-orm';
-import { products } from '@/database/schema';
+import Sort from '@/components/Sort';
+import { getSortedProducts } from '@/lib/queries/getSortedProducts';
 
-const Home = async () => {
-  const productsList = await db.select().from(products).orderBy(desc(products.createdAt));
+const Home = async ({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) => {
+  const { sort, category } = await searchParams;
+
+  const categories = category ? (Array.isArray(category) ? category : [category]) : [];
+  const productsList = await getSortedProducts(sort || 'default', categories);
+
   return (
     <>
       <section className="orange_container">
@@ -15,6 +19,11 @@ const Home = async () => {
       </section>
 
       <section className="section_container">
+        <div className="flex gap-4">
+          <Sort />
+          <Filter />
+        </div>
+
         <ProductList products={productsList} />
       </section>
     </>

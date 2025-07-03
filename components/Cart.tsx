@@ -1,14 +1,6 @@
 'use client';
 
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
 import { Button } from './ui/button';
 import CounterBtn from './CounterBtn';
@@ -33,7 +25,7 @@ const Cart = () => {
 
         {cartItems.map((cartItem) => {
           return (
-            <SheetDescription key={cartItem.product.id} className="mt-4">
+            <div key={cartItem.product.id} className="mt-4">
               <div className="flex justify-evenly space-x-4 mb-4 text-white ">
                 <Image
                   className="object-cover rounded-md "
@@ -65,23 +57,25 @@ const Cart = () => {
                   <CounterBtn product={cartItem.product} />
                 </div>
               </div>
-            </SheetDescription>
+            </div>
           );
         })}
 
         <Separator className="w-full h-0.5 bg-gray-200 mb-2" />
 
-        <Button className="bg-inherit w-fit text-white font-semibold" onClick={clearCart}>
-          Remove all Products
-        </Button>
+        {cartItems.length > 0 && (
+          <Button className="bg-inherit w-fit text-white font-semibold" onClick={clearCart}>
+            Remove all Products
+          </Button>
+        )}
 
-        <SheetDescription>
+        <div>
           <div className="text-white">
             <p className="font-semibold text-xl mt-4 mb-4">
               <span className="text-gray-400 ">The total of your cart is:</span> €{countTotalPrice()}
             </p>
           </div>
-        </SheetDescription>
+        </div>
 
         <SheetClose asChild>
           {cartItems.length === 0 ? (
