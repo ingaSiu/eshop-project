@@ -3,7 +3,7 @@ import { asc, desc, inArray } from 'drizzle-orm';
 
 import { db } from '@/database';
 
-export async function getSortedProducts(sort?: string, categories?: string[]) {
+export async function getSortedProducts(sort?: string, categories?: string[], page: number = 1, limit: number = 10) {
   let orderByCondition;
 
   switch (sort) {
@@ -28,11 +28,15 @@ export async function getSortedProducts(sort?: string, categories?: string[]) {
     CATEGORY_ENUM.enumValues.includes(cat as any),
   );
 
+  const offset = (page - 1) * limit;
+
   const query = db
     .select()
     .from(products)
     .where(validCategories && validCategories.length > 0 ? inArray(products.category, validCategories) : undefined)
-    .orderBy(orderByCondition);
+    .orderBy(orderByCondition)
+    .limit(limit)
+    .offset(offset);
 
   return await query;
 }
