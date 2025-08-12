@@ -77,10 +77,11 @@ const Home = async ({ searchParams }: { searchParams: Promise<{ [key: string]: s
                 })}
                 <PaginationEllipsis />
                 <PaginationItem>
-                  <PaginationNext
-                    href={getPageLink(currentPage + 1, sort, category)}
-                    aria-disabled={currentPage === totalPages}
-                  />
+                  {currentPage < totalPages ? (
+                    <PaginationNext href={getPageLink(currentPage + 1, sort, category)} />
+                  ) : (
+                    <PaginationNext className="pointer-events-none opacity-50" />
+                  )}
                 </PaginationItem>
               </PaginationContent>
             </Pagination>
