@@ -8,7 +8,9 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination';
 
+import { Button } from '@/components/ui/button';
 import Filter from '@/components/Filter';
+import Link from 'next/link';
 import ProductList from '@/components/ProductList';
 import Sort from '@/components/Sort';
 import { getSortedProducts } from '@/lib/queries/getSortedProducts';
@@ -53,7 +55,9 @@ const Home = async ({ searchParams }: { searchParams: Promise<{ [key: string]: s
             <Filter />
           </div>
         ) : (
-          ''
+          <Link href="/">
+            <Button className="font-semibold">← Go Back</Button>
+          </Link>
         )}
 
         <ProductList products={productsList.items} />
