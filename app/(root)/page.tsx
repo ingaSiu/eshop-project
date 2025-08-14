@@ -47,10 +47,14 @@ const Home = async ({ searchParams }: { searchParams: Promise<{ [key: string]: s
       </section>
 
       <section className="section_container">
-        <div className="flex gap-4">
-          <Sort />
-          <Filter />
-        </div>
+        {productsList.items.length > 0 ? (
+          <div className="flex gap-4">
+            <Sort />
+            <Filter />
+          </div>
+        ) : (
+          ''
+        )}
 
         <ProductList products={productsList.items} />
 
